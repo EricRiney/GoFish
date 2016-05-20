@@ -1,7 +1,4 @@
-# GoFish
-Go big or go home
-HBO go
-GoDaddy
-GoFundMe
-Go Ask Alice
-Go Tell it on the Mountain
+## My Go Goes to 11
+ubuntu@ip-172-31-40-93:~/goWorkSpace$ go install $GOFISH
+
+ubuntu@ip-172-31-40-93:~/goWorkSpace$ $RUNFISH
