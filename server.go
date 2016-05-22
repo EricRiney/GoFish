@@ -35,6 +35,7 @@ import "net/http"
 import "fmt"
 
 func main() {
+    fmt.Printf("\n.working.\n")
     http.HandleFunc("/", someFunc)
     http.ListenAndServe(":8080", nil)
 }
@@ -42,6 +43,20 @@ func main() {
 func someFunc(w http.ResponseWriter, req *http.Request) {
     w.Write([]byte("Hello universe"))
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 http.HandleFunc("/", someFunction)
