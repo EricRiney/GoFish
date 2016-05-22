@@ -35,7 +35,7 @@ import "net/http"
 import "fmt"
 
 func main() {
-    fmt.Printf("\n.working.\n")
+    fmt.Printf("\n.totally now kinda working.\n")
     http.HandleFunc("/", someFunc)
     http.ListenAndServe(":8080", nil)
 }
