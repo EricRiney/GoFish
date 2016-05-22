@@ -28,23 +28,37 @@ NET/HTTP
 Handle -> handler
 HandleFunc -> handlerFunc
 */
+//
+// package main
+//
+// import "net/http"
+// import "fmt"
+//
+// func main() {
+//     fmt.Printf("\n.totally now kinda working.\n")
+//     http.HandleFunc("/", someFunc)
+//     http.ListenAndServe(":8080", nil)
+// }
+//
+// func someFunc(w http.ResponseWriter, req *http.Request) {
+//     w.Write([]byte("Hello universe"))
+// }
 
 package main
 
-import "net/http"
-import "fmt"
+import (
+    "fmt"
+    "net/http"
+)
+
+func handler(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintf(w, "Hi there, I love %s!", r.URL.Path[1:])
+}
 
 func main() {
-    fmt.Printf("\n.totally now kinda working.\n")
-    http.HandleFunc("/", someFunc)
+    http.HandleFunc("/", handler)
     http.ListenAndServe(":8080", nil)
 }
-
-func someFunc(w http.ResponseWriter, req *http.Request) {
-    w.Write([]byte("Hello universe"))
-}
-
-
 
 
 
