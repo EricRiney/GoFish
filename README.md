@@ -3,10 +3,12 @@ ubuntu@ip-172-31-40-93:~/goWorkSpace$ go install $GOFISH
 
 ubuntu@ip-172-31-40-93:~/goWorkSpace$ $RUNFISH
 
-$ export GOBIN=$GOPATH/bin
+export GOPATH=$HOME/ubuntu/goWorkspace/src/github.com/EricRiney/GoFish
 
-$ export PATH=$PATH:$GOBIN
+export GOBIN=$GOPATH/bin
 
-go install
+export PATH=$PATH:$GOBIN
+
+go install server.go
 
 go run server.go

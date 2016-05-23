@@ -11,7 +11,7 @@ func hello(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-  fmt.Println("Hello, 世界")
+  fmt.Println("Hello, Meow")
 	http.HandleFunc("/", hello)
 	http.ListenAndServe(":8000", nil)
 }
