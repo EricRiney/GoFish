@@ -1,28 +1,72 @@
-<!doctype html>
+<!--<!doctype html>
 <html>
+
 <head>
     <title>Goes to 11</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> <!-- load fontawesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- load bootstrap css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- load fontawesome -->
+    <!-- PROCESS FORM WITH AJAX  -->
+    <script>
+        // define angular module/app
+    angular.module('formApp', [])
+        .controller('formController', function($scope, $http) {
+            $scope.formData = {};
+            $scope.signup = function() {
+                    //POST to the server using $http.post()
+                    $http.post('/api/v1/addAccount', $scope.formData)
+                    .success(function (data, status, headers) {
+                        $scope.PostDataResponse = data;
+                    })
+                    .error(function (data, status, header) {
+                        $scope.ResponseDetails = "Data: " + data +
+                            "<hr />status: " + status +
+                            "<hr />headers: " + header;
+                    });
+                    $http.post('/api/v1/user/accounts', $scope.formData)
+                    .success(function (data, status, headers) {
+                        console.log(data);
+                        
+                        var temp = document.getElementById("dick");
+                        var meow = "";
+                        for (var i = 0; i < data.length; i++) {
+                            meow += "<p>";
+                            meow += "<br> Balance: " + data[i].AccountBalance;
+                            meow += "<br> Account ID: " + data[i].AccountID;
+                            meow += "<br> Account Name: " + data[i].AccountName;
+                            meow += "<br> Account Type: " + data[i].AccountType;
+                            meow +="</p>";
+                        } 
+                        temp.innerHTML = meow;
+                    })
+                    .error(function (data, status, header) {
+                        console.log("failed");
+                    });
+            };
+        });
+    </script>
+
     <style>
-        body        { padding-top:80px; }
+        body {
+            padding-top: 80px;
+        }
     </style>
 </head>
+
 <body>
 
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand"
-                href="/index.html">
+                <a class="navbar-brand" href="/index.html">
                 Golang Uglyness</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -45,25 +89,24 @@
         <!-- /.container -->
     </nav>
 
-<div class="container">
-    <div class="jumbotron text-center">
-        <h1><i class="fa fa-play-circle-o" aria-hidden="true"></i>
- Goes to Eleven <i class="fa fa-play-circle-o" aria-hidden="true"></i> </h1>
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1><i class="fa fa-play-circle-o" aria-hidden="true"></i>Goes to Eleven <i class="fa fa-play-circle-o" aria-hidden="true"></i> </h1>
 
-        <div class="form-group">
-          <input name="input" type="text" class="form-control" ng-minlength="0"
-                  ng-model="formData.password">
+            <div class="form-group">
+                <input name="input" type="text" class="form-control" ng-minlength="0" ng-model="formData.password">
 
-      </div>
+            </div>
 
 
-      <!-- SHOW DATA FROM INPUTS AS THEY ARE BEING TYPED   -->
-      <pre>
+            <!-- SHOW DATA FROM INPUTS AS THEY ARE BEING TYPED   -->
+            <pre>
       {{formData}}
-      </pre>
+            </pre>
+
+        </div>
 
     </div>
-
-</div>
 </body>
+
 </html>
