@@ -109,9 +109,11 @@
     </nav>
 
     <div class="container">
+        <div class="jumbotron text-center">
+        <h1><span class="fa  fa-rebel"></span> Spaceballs The Website <span class="fa  fa-rebel"></span></h1>
         <div class="col-sm-6 col-sm-offset-3">
 
-            <h1><span class="fa fa-sign-in"></span> Go for it</h1>
+         
 
             <p class="alert alert-danger" ng-if="errorMessage">{{errorMessage}}</p>
 
@@ -121,7 +123,7 @@
                     <label>Word:</label>
                     <input name="try" class="form-control" placeholder="try" ng-model="formData.request" ng-change="helloGo()" required>
                 </div>
-
+ </div>
 
                 <!-- SHOW DATA FROM INPUTS AS THEY ARE BEING TYPED   -->
                 <pre>
