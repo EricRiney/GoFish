@@ -10,60 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- load fontawesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <!-- load angular -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-    <!-- PROCESS FORM WITH AJAX  -->
-    <script>
-        // define angular module/app
-    angular.module('formApp', [])
-        .controller('formController', function($scope, $http) {
-            $scope.formData = {};
-
-            $scope.helloGo = function() {
-                console.log('The form changed')
-            }
-
-            $scope.signup = function() {
-                    //POST to the server using $http.post()
-                    $http.post('/api/v1/addAccount', $scope.formData)
-                    .success(function (data, status, headers) {
-                        $scope.PostDataResponse = data;
-                    })
-                    .error(function (data, status, header) {
-                        $scope.ResponseDetails = "Data: " + data +
-                            "<hr />status: " + status +
-                            "<hr />headers: " + header;
-                    });
-                    $http.post('/api/v1/user/accounts', $scope.formData)
-                    .success(function (data, status, headers) {
-                        console.log(data);
-
-                        var temp = document.getElementById("dick");
-                        var meow = "";
-                        for (var i = 0; i < data.length; i++) {
-                            meow += "<p>";
-                            meow += "<br> Balance: " + data[i].AccountBalance;
-                            meow += "<br> Account ID: " + data[i].AccountID;
-                            meow += "<br> Account Name: " + data[i].AccountName;
-                            meow += "<br> Account Type: " + data[i].AccountType;
-                            meow +="</p>";
-                        }
-                        temp.innerHTML = meow;
-                    })
-                    .error(function (data, status, header) {
-                        console.log("failed");
-                    });
-
-            };
-
-        });
-    </script>
 
     <style>
         body {
@@ -71,11 +18,7 @@
         }
     </style>
 </head>
-
-<!-- apply the module and controller to our body so angular is applied to that -->
-
-<body ng-app="formApp" ng-controller="formController">
-
+<body>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -104,31 +47,19 @@
                     </li>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container -->
     </nav>
 
     <div class="container">
         <div class="jumbotron text-center">
         <h1><span class="fa  fa-rebel"></span> Goes to 11 <span class="fa  fa-rebel"></span></h1>
-
-
-            <p class="alert alert-danger" ng-if="errorMessage">{{errorMessage}}</p>
-
             <!-- LOGIN FORM -->
             <form name="signupForm" ng-submit="signup()" novalidate>
                 <div class="col-sm-6 col-sm-offset-3">
                     <input name="try" class="form-control" placeholder="go for broke"
                     ng-model="formData.request" ng-change="helloGo()" required>
+                
                 </div>
-
-
-                <!-- SHOW DATA FROM INPUTS AS THEY ARE BEING TYPED   -->
-
-
-
-
                 <div id="dick">
 
                 </div>
