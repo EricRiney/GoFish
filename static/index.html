@@ -30,10 +30,10 @@
             $scope.results = testResults;  //array reply'd from server
 
             $scope.helloGo = function() {
-                console.log($scope.input);
                 $http.get('/goapi/'+$scope.input)
                 .success(function (data, status, headers) {
                         $scope.results = data;
+                        console.log($scope.results);
                     })
                     .error(function (data, status, header) {
                     });
