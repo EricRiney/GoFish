@@ -22,16 +22,15 @@ func main() {
 
 func responseHandler(w http.ResponseWriter, req *http.Request, param httprouter.Params) {
   //fmt.Println(param.ByName("query"))
-  // make slice
-  var letters [13]string
-  // for loop slice
-  for i := 0; i < 13; i++ {
-	   letters[i] = (   "" + param.ByName("query") + strconv.Itoa(i)   )
-	}
 
-  // populate slice with 13 entries of the query + counter
-  // like: query0, query1, etc....
-  // return that
+  var letters [13]string
+  for i := 0; i < 13; i++ {
+	   letters[i] = ( "" + param.ByName("query") + strconv.Itoa(i) )
+	}
+  // load wiki into slice
+  // string match
+  // add words
+  // var responce = param.ByName("query")
 
 
 
