@@ -28,10 +28,11 @@
     var testResults = ["alpha", "bravo", "cast", "delta", "echo"]
     angular.module('formApp', [])
         .controller('formController', function($scope, $http) {
-            $scope.results = testResults;
+            $scope.input; //string from the search box
+            $scope.results = testResults;  //array reply'd from server
 
             $scope.helloGo = function() {
-                console.log('The form changed')
+                console.log($scope.input);
             }
 
             $scope.signup = function() {
@@ -100,7 +101,7 @@
             <form name="signupForm" ng-submit="signup()" novalidate>
                 <div class="col-sm-6 col-sm-offset-3">
                     <input name="try" class="form-control" placeholder="go for broke"
-                    ng-model="formData.request" ng-change="helloGo()" required>
+                    ng-model="input" ng-change="helloGo()" required>
                 </div>
 
 
