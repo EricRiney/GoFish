@@ -16,14 +16,19 @@
 
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        body {
+            padding-top: 80px;
+        }
+    </style>
 
-
-    <!-- PROCESS FORM WITH AJAX  -->
     <script>
-        // define angular module/app
+    
+    var testResults = ["alpha", "bravo", "cast", "delta", "echo"]
     angular.module('formApp', [])
         .controller('formController', function($scope, $http) {
-            $scope.formData = {};
+            $scope.results = testResults;
 
             $scope.helloGo = function() {
                 console.log('The form changed')
@@ -40,36 +45,11 @@
                             "<hr />status: " + status +
                             "<hr />headers: " + header;
                     });
-                    $http.post('/api/v1/user/accounts', $scope.formData)
-                    .success(function (data, status, headers) {
-                        console.log(data);
-
-                        var temp = document.getElementById("dick");
-                        var meow = "";
-                        for (var i = 0; i < data.length; i++) {
-                            meow += "<p>";
-                            meow += "<br> Balance: " + data[i].AccountBalance;
-                            meow += "<br> Account ID: " + data[i].AccountID;
-                            meow += "<br> Account Name: " + data[i].AccountName;
-                            meow += "<br> Account Type: " + data[i].AccountType;
-                            meow +="</p>";
-                        }
-                        temp.innerHTML = meow;
-                    })
-                    .error(function (data, status, header) {
-                        console.log("failed");
-                    });
-
+                   
             };
 
         });
     </script>
-
-    <style>
-        body {
-            padding-top: 80px;
-        }
-    </style>
 </head>
 
 <!-- apply the module and controller to our body so angular is applied to that -->
