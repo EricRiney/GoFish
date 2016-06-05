@@ -31,21 +31,27 @@
 
             $scope.helloGo = function() {
                 console.log($scope.input);
-            }
-
-            $scope.signup = function() {
-                    //POST to the server using $http.post()
-                    $http.post('/api/v1/addAccount', $scope.formData)
-                    .success(function (data, status, headers) {
-                        $scope.PostDataResponse = data;
+                $http.get('go/suggest/'+$scope.input)
+                .success(function (data, status, headers) {
+                        $scope.results = data;
                     })
                     .error(function (data, status, header) {
-                        $scope.ResponseDetails = "Data: " + data +
-                            "<hr />status: " + status +
-                            "<hr />headers: " + header;
                     });
+            }
+
+            // $scope.signup = function() {
+            //         //POST to the server using $http.post()
+            //         $http.post('/api/v1/addAccount', $scope.formData)
+            //         .success(function (data, status, headers) {
+            //             $scope.PostDataResponse = data;
+            //         })
+            //         .error(function (data, status, header) {
+            //             $scope.ResponseDetails = "Data: " + data +
+            //                 "<hr />status: " + status +
+            //                 "<hr />headers: " + header;
+            //         });
                    
-            };
+            // };
 
         });
     </script>
