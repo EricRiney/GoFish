@@ -4,8 +4,6 @@
 <head>
     <title>Goes to 11</title>
 
-
-
     <!-- load bootstrap css -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- load fontawesome -->
@@ -14,7 +12,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <style>
@@ -22,6 +19,7 @@
             padding-top: 80px;
         }
     </style>
+
 
     <script>
     
@@ -51,15 +49,15 @@
 
         });
     </script>
+
 </head>
 
-<!-- apply the module and controller to our body so angular is applied to that -->
+
 
 <body ng-app="formApp" ng-controller="formController">
 
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -67,15 +65,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="../index.html">
-                Go Challenge</a>
+                <a class="navbar-brand" href="../index.html">Go Challenge</a>
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">
-                        About</a>
+                        <a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">About</a>
                     </li>
                     <li>
                         <a href="#">Services</a>
@@ -85,40 +80,28 @@
                     </li>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container -->
     </nav>
 
     <div class="container">
         <div class="jumbotron text-center">
-        <h1><span class="fa  fa-rebel"></span> Goes to 11 <span class="fa  fa-rebel"></span></h1>
 
 
-            <p class="alert alert-danger" ng-if="errorMessage">{{errorMessage}}</p>
+            <h1><span class="fa fa-rebel"></span> Goes to 11 <span class="fa fa-rebel"></span></h1>
 
-            <!-- LOGIN FORM -->
-            <form name="signupForm" ng-submit="signup()" novalidate>
-                <div class="col-sm-6 col-sm-offset-3">
-                    <input name="try" class="form-control" placeholder="go for broke"
-                    ng-model="input" ng-change="helloGo()" required>
+        
+            <div class="col-sm-6 col-sm-offset-3">
+
+                <input name="try" class="form-control" placeholder="go for broke" ng-model="input" ng-change="helloGo()" required>
+
+                <div id="resultsContainer" >
+                    <div ng-repeat="result in results">{{result}}</div>
                 </div>
 
+            </div>
 
-                <!-- SHOW DATA FROM INPUTS AS THEY ARE BEING TYPED   -->
-
-
-
-
-                <div id="dick">
-
-                </div>
-
-
-            </form>
 
         </div>
-
     </div>
 </body>
 
