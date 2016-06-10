@@ -11,11 +11,11 @@ import (
   "os"
   "bufio"
   "strings"
-  "trie"
+  //"broersa"
 )
 
 func main() {
-  fmt.Println("Starting App")
+  fmt.Println("Starting App1")
   readThings()
   router := httprouter.New()
   router.GET("/goapi/:query", responseHandler)
@@ -24,7 +24,7 @@ func main() {
 
 func responseHandler(w http.ResponseWriter, req *http.Request, param httprouter.Params) {
   query := param.ByName("query")
-  matches := GetMatches(query, 35, &globalVarListThing)
+  matches := GetMatches(query, 13, &globalVarListThing)
   jsonArray, _ := json.Marshal(matches)
   w.Write(jsonArray)
   return

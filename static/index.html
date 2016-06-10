@@ -18,25 +18,46 @@
         body {
             padding-top: 80px;
         }
+        .aResult:hover{
+            text-decoration: underline;
+            cursor: pointer;
+            color: blue;
+        }
+        .resultBox{
+            text-align: center;
+            margin: 0.4em 1em; 
+        }
+        .resultBox:hover{
+            background: rgba(20, 20, 20, 0.3)
+        }
+        #resultsContainer{
+            border: 2px solid black;
+            background: rgba(10,10,10,0.2);
+        }
     </style>
 
 
     <script>
     
-    var testResults = ["alpha", "bravo", "cast", "delta", "echo"]
+    //var testResults;
     angular.module('formApp', [])
         .controller('formController', function($scope, $http) {
             $scope.input; //string from the search box
-            $scope.results = testResults;  //array reply'd from server
-
+            $scope.results = [];
             $scope.helloGo = function() {
                 $http.get('/goapi/'+$scope.input)
                 .success(function (data, status, headers) {
+                    console.log(data + " " + data.length );
+                    if (data != 'null'){
+                        
                         $scope.results = data;
-                        console.log($scope.results);
-                    })
-                    .error(function (data, status, header) {
-                    });
+                    }else{
+                        $scope.results = ["no matches found"];
+                    }
+                 })
+                 .error(function (data, status, header) {
+                     $scope.results = ["server error, try again later"];
+                 });
             }
 
         });
@@ -86,10 +107,11 @@
 
                 <input name="try" class="form-control" placeholder="go for broke" ng-model="input" ng-change="helloGo()" required>
 
-                <div id="resultsContainer" >
-                    <div ng-repeat="result in results">{{result}}</div>
+                <div id="resultsContainer">
+                    <div class="resultBox" ng-repeat="result in results">
+                        <div class="aResult" onclick="window.open(this.title);" title="https://wikipedia.org/wiki/{{result}}">{{result}}</div>
+                    </div>
                 </div>
-
             </div>
 
 
