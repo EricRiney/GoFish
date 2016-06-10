@@ -8,10 +8,13 @@ import (
   "github.com/julienschmidt/httprouter"
   "encoding/json"
   "strconv"
+  "os"
+  "bufio"
 )
 
 func main() {
   fmt.Println("Starting App01")
+  readThings()
 
   // load wiki titles into memory
 
@@ -39,4 +42,24 @@ func responseHandler(w http.ResponseWriter, req *http.Request, param httprouter.
   return
   //w.Write([]byte("A response"))
   //io.WriteString(w, "Hello world!")
+}
+
+var globalVarListThing []string
+
+func readThings() {
+  zpath := "/home/ubuntu/goWorkSpace/src/github.com/EricRiney/GoFish/theData/smallWordsEn.txt"
+  filePath, err := os.Open(zpath)
+  if err != nil {
+    panic(err)
+  }
+
+  ericScan := bufio.NewScanner(filePath)
+  for ericScan.Scan() {
+    fmt.Println(ericScan.Text())
+    globalVarListThing = append(globalVarListThing,ericScan.Text())
+  }
+  fmt.Println("done doing shit")
+
+  
+
 }
