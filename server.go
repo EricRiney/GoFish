@@ -14,7 +14,7 @@ import (
 )
 
 func main() {
-  fmt.Println("Starting App01")
+  fmt.Println("Starting App0oooo01")
   readThings()
 
   // load wiki titles into memory
@@ -46,6 +46,13 @@ func responseHandler(w http.ResponseWriter, req *http.Request, param httprouter.
 }
 
 //make this trie structure
+
+type Trie struct {
+  }
+
+type node struct {
+  }
+
 var globalVarListThing []string
 
 func readThings() {
