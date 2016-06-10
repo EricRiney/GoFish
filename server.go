@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-  fmt.Println("Starting App")
+  fmt.Println("Starting App01")
 
   // load wiki titles into memory
 
