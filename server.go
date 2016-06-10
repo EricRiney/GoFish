@@ -11,53 +11,32 @@ import (
   "os"
   "bufio"
   "strings"
+  //"trie"
 )
 
 func main() {
-  fmt.Println("Starting App0oooo01")
+  fmt.Println("Starting App")
   readThings()
-
-  // load wiki titles into memory
-
   router := httprouter.New()
   router.GET("/goapi/:query", responseHandler)
 	log.Fatal(http.ListenAndServe(":9761", router))
 }
 
 func responseHandler(w http.ResponseWriter, req *http.Request, param httprouter.Params) {
-  //fmt.Println(param.ByName("query"))
-
-  // var letters [13]string
-  // for i := 0; i < 13; i++ {
-	//    letters[i] = ( "" + param.ByName("query") + strconv.Itoa(i) )
-	// }
-  // load wiki into slice
-  // string match
-  // add words
-  zzquery := param.ByName("query")
-
-  zmatches := GetMatches(zzquery, 35, &globalVarListThing)
-
-  jsonArray, _ := json.Marshal(zmatches)
+  query := param.ByName("query")
+  matches := GetMatches(query, 35, &globalVarListThing)
+  jsonArray, _ := json.Marshal(matches)
   w.Write(jsonArray)
   return
-  //w.Write([]byte("A response"))
-  //io.WriteString(w, "Hello world!")
 }
 
 //make this trie structure
-
-type Trie struct {
-  }
-
-type node struct {
-  }
-
+type Trie struct {}
 var globalVarListThing []string
 
 func readThings() {
-  zpath := "/home/ubuntu/goWorkSpace/src/github.com/EricRiney/GoFish/theData/smallWordsEn.txt"
-  filePath, err := os.Open(zpath)
+  path := "/home/ubuntu/goWorkSpace/src/github.com/EricRiney/GoFish/theData/smallWordsEn.txt"
+  filePath, err := os.Open(path)
   if err != nil {
     panic(err)
   }
@@ -67,17 +46,8 @@ func readThings() {
     //load into trie structure
     globalVarListThing = append(globalVarListThing,ericScan.Text())
   }
-  fmt.Println("done doing shit")
-
+  fmt.Println("done reading maybe")
 }
-
-
-
-
-
-
-
-
 
 //function to query trie structure
 
