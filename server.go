@@ -7,9 +7,10 @@ import (
   "fmt"
   "github.com/julienschmidt/httprouter"
   "encoding/json"
-  "strconv"
+  //"strconv"
   "os"
   "bufio"
+  "strings"
 )
 
 func main() {
@@ -26,24 +27,25 @@ func main() {
 func responseHandler(w http.ResponseWriter, req *http.Request, param httprouter.Params) {
   //fmt.Println(param.ByName("query"))
 
-  var letters [13]string
-  for i := 0; i < 13; i++ {
-	   letters[i] = ( "" + param.ByName("query") + strconv.Itoa(i) )
-	}
+  // var letters [13]string
+  // for i := 0; i < 13; i++ {
+	//    letters[i] = ( "" + param.ByName("query") + strconv.Itoa(i) )
+	// }
   // load wiki into slice
   // string match
   // add words
-  // var responce = param.ByName("query")
+  zzquery := param.ByName("query")
 
+  zmatches := GetMatches(zzquery, 35, &globalVarListThing)
 
-
-  jsonArray, _ := json.Marshal(letters)
+  jsonArray, _ := json.Marshal(zmatches)
   w.Write(jsonArray)
   return
   //w.Write([]byte("A response"))
   //io.WriteString(w, "Hello world!")
 }
 
+//make this trie structure
 var globalVarListThing []string
 
 func readThings() {
@@ -55,11 +57,30 @@ func readThings() {
 
   ericScan := bufio.NewScanner(filePath)
   for ericScan.Scan() {
-    fmt.Println(ericScan.Text())
+    //load into trie structure
     globalVarListThing = append(globalVarListThing,ericScan.Text())
   }
   fmt.Println("done doing shit")
 
-  
+}
 
+
+
+
+
+
+
+
+
+//function to query trie structure
+
+//zhao crap
+func GetMatches(queryS string, rCount uint64, sliceData *[]string) *[]string {
+	var tempSlice []string
+	for i := 0; ( i < len(*sliceData) )&&( uint64(len(tempSlice)) < rCount ); i++ {
+		if strings.HasPrefix(strings.ToLower((*sliceData)[i]), queryS) {
+			tempSlice = append(tempSlice,(*sliceData)[i])
+		}
+	}
+	return &tempSlice
 }
