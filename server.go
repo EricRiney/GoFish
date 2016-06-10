@@ -11,7 +11,7 @@ import (
   "os"
   "bufio"
   "strings"
-  //"trie"
+  "trie"
 )
 
 func main() {
@@ -31,7 +31,7 @@ func responseHandler(w http.ResponseWriter, req *http.Request, param httprouter.
 }
 
 //make the trie structure
-type Trie struct {}
+//type Trie struct {}
 //type node struct {}
 var globalVarListThing []string
 
@@ -45,29 +45,28 @@ func readThings() {
   ericScan := bufio.NewScanner(filePath)
   for ericScan.Scan() {
     //load into trie structure
-    Trie = append(globalVarListThing,ericScan.Text())
+    //Trie = append(globalVarListThing,ericScan.Text())
     globalVarListThing = append(globalVarListThing,ericScan.Text())
   }
   fmt.Println("done reading maybe")
 }
 
 //function to query trie structure
-
-func (trie *Trie) AddEntry(entry string) {
-
-}
-
-func (trie *Trie) FindEntries(prefix string, max uint8) []string {
-}
+// func (trie *Trie) AddEntry(entry string) {
+//
+// }
+//
+//  func (trie *Trie) FindEntries(prefix string, max uint8) []string {
+// }
 
 
 //zhao crap
-// func GetMatches(queryS string, rCount uint64, sliceData *[]string) *[]string {
-// 	var tempSlice []string
-// 	for i := 0; ( i < len(*sliceData) )&&( uint64(len(tempSlice)) < rCount ); i++ {
-// 		if strings.HasPrefix(strings.ToLower((*sliceData)[i]), queryS) {
-// 			tempSlice = append(tempSlice,(*sliceData)[i])
-// 		}
-// 	}
-// 	return &tempSlice
-// }
+func GetMatches(queryS string, rCount uint64, sliceData *[]string) *[]string {
+	var tempSlice []string
+	for i := 0; ( i < len(*sliceData) )&&( uint64(len(tempSlice)) < rCount ); i++ {
+		if strings.HasPrefix(strings.ToLower((*sliceData)[i]), queryS) {
+			tempSlice = append(tempSlice,(*sliceData)[i])
+		}
+	}
+	return &tempSlice
+}
