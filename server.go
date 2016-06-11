@@ -1,17 +1,14 @@
 package main
 
 import (
-	//"io"
   "log"
 	"net/http"
   "fmt"
   "github.com/julienschmidt/httprouter"
   "encoding/json"
-  //"strconv"
   "os"
   "bufio"
   "strings"
-  //"broersa"
 )
 
 func main() {
@@ -30,9 +27,6 @@ func responseHandler(w http.ResponseWriter, req *http.Request, param httprouter.
   return
 }
 
-//make the trie structure
-//type Trie struct {}
-//type node struct {}
 var globalVarListThing []string
 
 func readThings() {
@@ -42,25 +36,15 @@ func readThings() {
     panic(err)
   }
 
-  ericScan := bufio.NewScanner(filePath)
+  Rineyscan := bufio.NewScanner(filePath)
   for ericScan.Scan() {
-    //load into trie structure
-    //Trie = append(globalVarListThing,ericScan.Text())
-    globalVarListThing = append(globalVarListThing,ericScan.Text())
+    globalVarListThing = append(globalVarListThing,Rineyscan.Text())
   }
   fmt.Println("done reading maybe")
 }
 
-//function to query trie structure
-// func (trie *Trie) AddEntry(entry string) {
-//
-// }
-//
-//  func (trie *Trie) FindEntries(prefix string, max uint8) []string {
-// }
 
-
-//zhao crap
+// function to query an array
 func GetMatches(queryS string, rCount uint64, sliceData *[]string) *[]string {
 	var tempSlice []string
 	for i := 0; ( i < len(*sliceData) )&&( uint64(len(tempSlice)) < rCount ); i++ {
